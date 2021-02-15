@@ -1,5 +1,8 @@
-const userQueryService = require('./user-query-service');
+const express = require("express");
+const app = express();
 
-const user = userQueryService.queryUserById(1);
+const usersController = require('./controllers/users-controller');
+app.get('/api/users', usersController.getUsers)
 
-console.log(user);
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server started on port ${port}`));
